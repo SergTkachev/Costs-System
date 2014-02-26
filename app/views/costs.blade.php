@@ -1,15 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Laravel PHP Framework</title>
-    <link rel="stylesheet" href="css/style.css"/>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="js/script.js"></script>
-</head>
-<body>
-<section class="container">
-    <h1 class="title">Cost system</h1>
+@extends('layout')
+
+@section('costs')
+    <h2>All costs</h2>
+    @foreach($costs as $cost_obj)
+        <div class="cost-item">
+            <span>{{ $cost_obj->value }}&#8372</span>
+            <span>{{ $cost_obj->tid }}</span>
+            <span>{{ $cost_obj->date }}</span>
+            <span>{{ $cost_obj->description }}</span>
+        </div>
+    @endforeach
+@stop
+
+@section('form')
     <form action="costs" method="post" class="form">
         <ul>
             <li>
@@ -27,6 +30,4 @@
         </ul>
         <input type="submit" value="Send Message" id="submit"/>
     </form>
-</section>
-</body>
-</html>
+@stop
