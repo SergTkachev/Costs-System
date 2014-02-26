@@ -93,6 +93,15 @@ body, input, textarea {
     border-radius: 5px 5px 0 0;
 }
 
+.page-title {
+    font-size: 1.5em;
+    padding: .5em 0;
+    text-align: center;
+    background: #323a45;
+    color: white;
+    border-radius: 1em;
+}
+
 /* Form
 ==================================== */
 .form ul {

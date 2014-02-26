@@ -1,18 +1,18 @@
 @extends('layout')
 
 @section('costs')
-    <h2>All costs</h2>
     @foreach($costs as $cost_obj)
         <div class="cost-item">
-            <span>{{ $cost_obj->value }}&#8372</span>
-            <span>{{ $cost_obj->tid }}</span>
-            <span>{{ $cost_obj->date }}</span>
-            <span>{{ $cost_obj->description }}</span>
+            <span>{{ $cost_obj['value'] }}&#8372</span>
+            <span>{{ $cost_obj['type'] }}</span>
+            <span>{{ $cost_obj['date'] }}</span>
+            <span>{{ $cost_obj['description'] }}</span>
         </div>
     @endforeach
 @stop
 
 @section('form')
+    <h1 class="title">Add a cost</h1>
     <form action="costs" method="post" class="form">
         <ul>
             <li>

@@ -27,28 +27,6 @@ Route::post('users', function() {
   return $users;
 });
 
-Route::get('/costs', function() {
-  $costs = Cost::all();
-  return View::make('costs')->with('costs', $costs);
-});
+Route::get('/costs', 'CostController@getCosts');
 
-Route::post('/costs', function() {
-  $type = strtolower(trim($_POST['type']));
-  $value = strtolower(trim($_POST['value']));
-  $description = ucfirst(trim($_POST['description']));
-  if (!empty($value) && !empty($type)) {
-    Type::firstOrNew(array('name' => $type))->save();
-    $tid_arr = Type::whereName($type)->take(1)->get(array('tid'))->toArray();
-    $tid = $tid_arr[0]['tid'];
-    $cost = new Cost(array(
-      'value' => $value,
-      'description' => $description,
-      'tid' => $tid,
-      'uid' => 1,
-      'date' => time(),
-    ));
-    $cost->save();
-  }
-  print "<!---->";
-  return Redirect::to('/costs');
-});
+Route::post('/costs', 'CostController@addCost');

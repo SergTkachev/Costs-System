@@ -9,4 +9,5 @@ class Type extends Eloquent {
   protected $table = 'types';
   protected $fillable = array('name');
   public $timestamps = false;
+  protected $primaryKey = 'tid';
 }
