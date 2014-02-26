@@ -28,6 +28,6 @@
                 <textarea placeholder="Description…" name="description" id="cost-description"></textarea>
             </li>
         </ul>
-        <input type="submit" value="Send Message" id="submit"/>
+        <input type="submit" value="Add" id="submit"/>
     </form>
 @stop
