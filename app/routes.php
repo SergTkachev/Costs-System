@@ -28,7 +28,8 @@ Route::post('users', function() {
 });
 
 Route::get('/costs', function() {
-  return View::make('costs-form');
+  $costs = Cost::all();
+  return View::make('costs')->with('costs', $costs);
 });
 
 Route::post('/costs', function() {
@@ -49,6 +50,5 @@ Route::post('/costs', function() {
     $cost->save();
   }
   print "<!---->";
-  return View::make('costs-form');
-  // return Redirect::to('/costs');
+  return Redirect::to('/costs');
 });
