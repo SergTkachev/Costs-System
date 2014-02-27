@@ -32,6 +32,6 @@ class CostController extends BaseController {
       ));
       $cost->save();
     }
-    return Redirect::to('/costs');
+    Redirect::to('/');
 	}
 }

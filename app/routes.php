@@ -11,11 +11,7 @@
 |
 */
 
-Route::get('/', function() {
-	return View::make('hello');
-});
-
-Route::get('test', 'HomeController@showWelcome');
+Route::get('/', 'CostController@getCosts');
 
 Route::get('users', function() {
   $users = User::all();
