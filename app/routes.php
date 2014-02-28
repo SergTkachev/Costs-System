@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'CostController@getCosts');
+Route::get('/', function() {
+  return View::make('frontpage');
+});
 
 Route::get('users', function() {
   $users = User::all();
@@ -22,5 +24,7 @@ Route::post('users', function() {
   $users = User::all();
   return $users;
 });
+
+Route::get('/costs', 'CostController@getCosts');
 
 Route::post('/costs', 'CostController@addCost');
