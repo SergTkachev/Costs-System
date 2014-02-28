@@ -211,6 +211,7 @@ input[type="submit"]:active {
     width: 24.7%;
     display: inline-block;
     text-align: center;
+    vertical-align: top;
 }
 
 .cost-cell.description {
@@ -224,6 +225,10 @@ input[type="submit"]:active {
 #costs .pager {
     text-align: center;
     margin-top: 1em;
+}
+
+.costs-header {
+    border-bottom: 1px solid #FFF;
 }
 
 /* Javascript classes

@@ -56,12 +56,12 @@
   <form action="costs" method="post" class="form">
     <ul>
       <li>
-        <label for="cost-type">Type:</label>
-        <input placeholder="Type…" type="text" name="type" id="cost-type"/>
-      </li>
-      <li>
         <label for="cost-value">Value:</label>
         <input placeholder="Value…" type="text" name="value" id="cost-value"/>
+      </li>
+      <li>
+        <label for="cost-type">Type:</label>
+        <input placeholder="Type…" type="text" name="type" id="cost-type"/>
       </li>
       <li>
         <label for="cost-description">Description:</label>

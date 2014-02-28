@@ -11,7 +11,7 @@ class CostController extends BaseController {
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     if (empty($_GET)) {
       $ipp = MAX_COSTS_PER_PAGE;
-      $query = Cost::all()->take($ipp);
+      $query = Cost::take($ipp)->orderBy('date', 'DESC')->get();
     }
     else {
       $type = !empty($_GET['type']) ? lcfirst($_GET['type']) : '';
@@ -27,7 +27,7 @@ class CostController extends BaseController {
         $query->take($ipp);
       }
       unset($_GET['page']);
-      $query = $query->skip(($page - 1) * $ipp)->get();
+      $query = $query->skip(($page - 1) * $ipp)->orderBy('date', 'DESC')->get();
     }
 
     /**

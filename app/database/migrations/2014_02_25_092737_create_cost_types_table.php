@@ -14,7 +14,7 @@ class CreateCostTypesTable extends Migration {
     Schema::create('costs', function($table) {
         $table->engine = 'InnoDB';
         $table->increments('cid');
-        $table->integer('value');
+        $table->float('value');
         $table->integer('tid');
         $table->integer('uid');
         $table->string('description', 255)->default('');
