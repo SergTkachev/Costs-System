@@ -26,12 +26,18 @@
 @stop
 
 @section('costs')
+    <div class="cost-item costs-header">
+      <span class="cost-cell">Value</span>
+      <span class="cost-cell">Type</span>
+      <span class="cost-cell">Date</span>
+      <span class="cost-cell">Description</span>
+    </div>
   @foreach($costs as $cost_obj)
     <div class="cost-item">
-      <span>{{ $cost_obj['value'] }}&#8372</span>
-      <span>{{ $cost_obj['type'] }}</span>
-      <span>{{ $cost_obj['date'] }}</span>
-      <span>{{ $cost_obj['description'] }}</span>
+      <span class="cost-cell">{{ $cost_obj['value'] }}&#8372</span>
+      <span class="cost-cell">{{ $cost_obj['type'] }}</span>
+      <span class="cost-cell">{{ $cost_obj['date'] }}</span>
+      <span class="cost-cell description">{{ $cost_obj['description'] }}</span>
     </div>
   @endforeach
   <div class="pager">

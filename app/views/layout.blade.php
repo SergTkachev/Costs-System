@@ -10,9 +10,15 @@
 <body>
 <section class="container">
   <h1 class="page-title">Cost system</h1>
-  @yield('filters')
-  @yield('costs')
-  @yield('add')
+  <div class="section" id="filters">
+    @yield('filters')
+  </div>
+  <div class="section" id="costs">
+    @yield('costs')
+  </div>
+  <div class="section" id="add-cost">
+    @yield('add')
+  </div>
 </section>
 </body>
 </html>

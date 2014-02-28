@@ -70,7 +70,7 @@ table {
 }
 
 body {
-    background: #eaedf1;
+    background: #323a45;
 }
 
 body, input, textarea {
@@ -78,9 +78,9 @@ body, input, textarea {
 }
 
 .container {
-    max-width: 25em;
+    /*max-width: 25em;
     margin: 2em auto;
-    width: 95%;
+    width: 95%;*/
 
 }
 
@@ -97,9 +97,38 @@ body, input, textarea {
     font-size: 1.5em;
     padding: .5em 0;
     text-align: center;
+    margin: 0;
     background: #323a45;
     color: white;
-    border-radius: 1em;
+    border-bottom: 2px dashed #000000;
+}
+
+/* Sections
+==================================== */
+.section {
+    position: absolute;
+    border-bottom: 2px dashed #000000;
+    height: 92%;
+}
+
+#filters {
+    left: 0;
+    right: 85%;
+    border-right: 2px dashed #000000;
+    height: 92%;
+}
+
+#costs {
+    left: 15%;
+    right: 15%;
+    padding: 1em 5%;
+    color: #fff;
+}
+
+#add-cost {
+    right: 0;
+    left: 85%;
+    border-left: 2px dashed #000000;
 }
 
 /* Form
@@ -170,6 +199,31 @@ input[type="submit"]:hover {
 input[type="submit"]:active {
     -webkit-transform: scale(.975);
     transform: scale(.975);
+}
+
+/* Costs
+==================================== */
+.cost-item {
+    margin: 1em 0;
+}
+
+.cost-cell {
+    width: 24.7%;
+    display: inline-block;
+    text-align: center;
+}
+
+.cost-cell.description {
+    text-align: justify;
+}
+
+.costs-header .cost-cell {
+    font-size: 1.5em;
+}
+
+#costs .pager {
+    text-align: center;
+    margin-top: 1em;
 }
 
 /* Javascript classes
