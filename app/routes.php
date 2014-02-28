@@ -23,6 +23,4 @@ Route::post('users', function() {
   return $users;
 });
 
-Route::get('/costs', 'CostController@getCosts');
-
 Route::post('/costs', 'CostController@addCost');

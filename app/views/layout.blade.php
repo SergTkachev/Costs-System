@@ -10,8 +10,9 @@
 <body>
 <section class="container">
   <h1 class="page-title">Cost system</h1>
+  @yield('filters')
   @yield('costs')
-  @yield('form')
+  @yield('add')
 </section>
 </body>
 </html>
