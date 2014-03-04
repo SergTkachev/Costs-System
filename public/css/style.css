@@ -208,7 +208,7 @@ input[type="submit"]:active {
 }
 
 .cost-cell {
-    width: 24.7%;
+    width: 24%;
     display: inline-block;
     text-align: center;
     vertical-align: top;

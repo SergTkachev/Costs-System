@@ -1,3 +1,40 @@
+console.log('test');
+(function(ng) {
+    var app = ng.module('app', []);
+
+    var MainCtrl = function($scope, $http) {
+        $http.get('api/costs').success(function(data) {
+            $scope.costs = data;
+        });
+        console.log($scope.costs);
+
+        $scope.deleteUser = function(user, index) {
+            $http.delete('api/costs/' + user.id).success(function(data) {
+                $scope.costs.splice($scope.costs.indexOf(user), 1);
+            });
+        };
+
+        $scope.saveUser = function(user) {
+            $http.post('api/costs', user).success(function(data) {
+                $scope.costs.push(data);
+                $scope.user = null;
+            });
+        };
+    };
+
+    MainCtrl.$inject = ['$scope', '$http'];
+
+    app.controller('MainCtrl', MainCtrl);
+
+    app.directive('mainController', function() {
+        return {
+            restrict: 'C',
+            controller: 'MainCtrl'
+        };
+    });
+
+})(angular);
+
 /*
  * Interaction design based on:
  * http://dribbble.com/shots/1254439--GIF-Mobile-Form-Interaction?list=users
