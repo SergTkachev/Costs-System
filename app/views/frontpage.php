@@ -25,7 +25,28 @@
 <section class="container main-controller">
   <h1 class="page-title">Cost system</h1>
   <div class="section" id="filters">
-    Filters
+    <h1 class="title">Filters</h1>
+    <form class="form">
+      <ul>
+        <li>
+          <label for="filter-type">Type:</label>
+          <input placeholder="Type…" type="text" name="type" id="filter-type"/>
+        </li>
+        <li>
+          <label for="filter-date-from">Date from:</label>
+          <input placeholder="Date from…" type="text" name="date1" id="filter-date-from"/>
+        </li>
+        <li>
+          <label for="filter-date-to">Date to:</label>
+          <input placeholder="Date to…" type="text" name="date2" id="filter-date-to"/>
+        </li>
+        <li>
+          <label for="filter-pager">Items per page:</label>
+          <input placeholder="Items per page…" type="text" name="ipp" id="filter-pager"/>
+        </li>
+      </ul>
+      <input type="submit" value="Filter" id="submit"/>
+    </form>
   </div>
   <div class="section" id="costs">
     <div class="cost-item costs-header">
@@ -42,7 +63,24 @@
     </div>
   </div>
   <div class="section" id="add-cost">
-    Add form
+    <h1 class="title">Add a cost</h1>
+    <form class="form">
+      <ul>
+        <li>
+          <label for="cost-value">Value:</label>
+          <input ng-model='cost.value' placeholder="Value…" type="text" name="value" id="cost-value"/>
+        </li>
+        <li>
+          <label for="cost-type">Type:</label>
+          <input ng-model='cost.type' placeholder="Type…" type="text" name="type" id="cost-type"/>
+        </li>
+        <li>
+          <label for="cost-description">Description:</label>
+          <textarea ng-model='cost.description' placeholder="Description…" name="description" id="cost-description"></textarea>
+        </li>
+      </ul>
+      <input type="submit" value="Add" id="submit" ng-click='addCost(cost)'/>
+    </form>
   </div>
 </section>
 </body>

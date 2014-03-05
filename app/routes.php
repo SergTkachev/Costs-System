@@ -30,3 +30,5 @@ Route::get('/costs', 'CostController@getCosts');
 Route::get('/api/costs', 'CostController@getApiCosts');
 
 Route::post('/costs', 'CostController@addCost');
+
+Route::post('/api/costs', 'CostController@addApiCost');

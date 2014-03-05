@@ -1,6 +1,6 @@
 <?php
 
-define('MAX_COSTS_PER_PAGE', 50);
+define('MAX_COSTS_PER_PAGE', 10);
 
 class CostController extends BaseController {
   public function getApiCosts() {
@@ -118,4 +118,30 @@ class CostController extends BaseController {
     }
     return Redirect::to('/');
 	}
+
+  public function addApiCost() {
+    global $HTTP_RAW_POST_DATA;
+    $costPost = json_decode($HTTP_RAW_POST_DATA);
+    $type = strtolower(trim($costPost->type));
+    $value = strtolower(trim($costPost->value));
+    $description = ucfirst(trim($costPost->description));
+    $result = NULL;
+    if (!empty($value) && !empty($type)) {
+      Type::firstOrNew(array('name' => $type))->save();
+      $tid_arr = Type::whereName($type)->take(1)->get(array('tid'))->toArray();
+      $tid = $tid_arr[0]['tid'];
+      $cost = new Cost(array(
+        'value' => $value,
+        'description' => $description,
+        'tid' => $tid,
+        'uid' => 1,
+        'date' => time(),
+      ));
+      $cost->save();
+      $result = $cost->getAttributes();
+      $result['type'] = ucfirst($type);
+      $result['date'] = date('d.m.Y', strtotime($result['date']));
+    }
+    return $result;
+  }
 }

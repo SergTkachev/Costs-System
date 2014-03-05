@@ -9,6 +9,7 @@ class Cost extends Eloquent {
   protected $table = 'costs';
   public $timestamps = false;
   protected $fillable = array('uid', 'tid', 'value', 'date', 'description');
+  protected $visible = array('uid', 'tid', 'value', 'date', 'description');
   protected $primaryKey = 'cid';
   public function getDates() {
     return array('date');

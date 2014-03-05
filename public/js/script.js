@@ -1,4 +1,3 @@
-console.log('test');
 (function(ng) {
     var app = ng.module('app', []);
 
@@ -6,7 +5,6 @@ console.log('test');
         $http.get('api/costs').success(function(data) {
             $scope.costs = data;
         });
-        console.log($scope.costs);
 
         $scope.deleteUser = function(user, index) {
             $http.delete('api/costs/' + user.id).success(function(data) {
@@ -18,6 +16,21 @@ console.log('test');
             $http.post('api/costs', user).success(function(data) {
                 $scope.costs.push(data);
                 $scope.user = null;
+            });
+        };
+
+        $scope.addCost = function(cost) {
+            cost = {
+                type: cost.type || '',
+                value: cost.value || '',
+                description: cost.description || ''
+            };
+            $http.post('api/costs', cost).success(function(data) {
+                console.log(data);
+                $scope.costs.push(data);
+                $scope.cost = null;
+            }).error(function() {
+                console.log(arguments);
             });
         };
     };
