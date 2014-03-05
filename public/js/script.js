@@ -26,8 +26,7 @@
                 description: cost.description || ''
             };
             $http.post('api/costs', cost).success(function(data) {
-                console.log(data);
-                $scope.costs.push(data);
+                $scope.costs.unshift(data);
                 $scope.cost = null;
             }).error(function() {
                 console.log(arguments);
