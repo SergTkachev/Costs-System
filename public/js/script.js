@@ -3,21 +3,12 @@
 
     var MainCtrl = function($scope, $http) {
         $http.get('api/costs').success(function(data) {
-            $scope.costs = data;
+            $scope.costs = data.costs;
+            $scope.pager = data.pager; // Array.apply(null, Array(data.pager)).map(function (_, i) { return i + 1; });
+            $scope.page = 1;
+            $scope.pageSize = data.pageSize;
+            $scope.pages = [1];
         });
-
-        $scope.deleteUser = function(user, index) {
-            $http.delete('api/costs/' + user.id).success(function(data) {
-                $scope.costs.splice($scope.costs.indexOf(user), 1);
-            });
-        };
-
-        $scope.saveUser = function(user) {
-            $http.post('api/costs', user).success(function(data) {
-                $scope.costs.push(data);
-                $scope.user = null;
-            });
-        };
 
         $scope.addCost = function(cost) {
             cost = {
@@ -28,10 +19,20 @@
             $http.post('api/costs', cost).success(function(data) {
                 $scope.costs.unshift(data);
                 $scope.cost = null;
-            }).error(function() {
-                console.log(arguments);
+            }).error(function(e) {
+                console.log(e);
             });
         };
+
+        $scope.goPage = function(page) {
+            $scope.page = page;
+            if ($scope.pages.indexOf(page) < 0) {
+                $http.get('api/costs?page=' + page).success(function(data) {
+                    $scope.costs = $scope.costs.concat(data.costs);
+                    $scope.pages.push(page);
+                });
+            }
+        }
     };
 
     MainCtrl.$inject = ['$scope', '$http'];
@@ -43,6 +44,17 @@
             restrict: 'C',
             controller: 'MainCtrl'
         };
+    });
+
+    /**
+     * Filter for paging.
+     */
+    app.filter('startFrom', function() {
+        return function(input, start) {
+            start = typeof start === 'undefined' ? 0 : start;
+            input = typeof input === 'undefined' ? [] : input;
+            return input.slice(start);
+        }
     });
 
     /*

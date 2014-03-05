@@ -231,6 +231,14 @@ input[type="submit"]:active {
     border-bottom: 1px solid #FFF;
 }
 
+.pager a {
+    margin-right: 1em;
+}
+
+.pager a:last-child {
+    margin-right: 0;
+}
+
 /* Javascript classes
    Used for modifying form fields
 ==================================== */

@@ -3,6 +3,11 @@
 define('MAX_COSTS_PER_PAGE', 10);
 
 class CostController extends BaseController {
+
+  public function getPagerCount($ipp = MAX_COSTS_PER_PAGE) {
+    return ceil(Cost::all()->count() / $ipp);
+  }
+
   public function getApiCosts() {
     /**
      * Filtering costs.
@@ -30,12 +35,6 @@ class CostController extends BaseController {
     }
 
     /**
-     * Prepare variables for pager.
-     */
-    $num_costs = Cost::all()->count();
-    $num_pages = ceil($num_costs / $ipp);
-
-    /**
      * Change costs for view.
      */
     $costs = array_map(function($item) {
@@ -46,7 +45,10 @@ class CostController extends BaseController {
           'description' => $item['description'],
         );
       }, $query->toArray());
-    return $costs;
+    $result['costs'] = $costs;
+    $result['pager'] = $this->getPagerCount($ipp);
+    $result['pageSize'] = $ipp;
+    return $result;
   }
 
   public function getCosts() {
@@ -76,12 +78,6 @@ class CostController extends BaseController {
     }
 
     /**
-     * Prepare variables for pager.
-     */
-    $num_costs = Cost::all()->count();
-    $num_pages = ceil($num_costs / $ipp);
-
-    /**
      * Change costs for view.
      */
     $costs = array_map(function($item) {
@@ -94,7 +90,7 @@ class CostController extends BaseController {
     }, $query->toArray());
     return View::make('costs')
       ->with('costs', $costs)
-      ->with('num', $num_pages)
+      ->with('num', $this->getPagerCount())
       ->with('page', $page)
       ->with('get', http_build_query($_GET));
   }
