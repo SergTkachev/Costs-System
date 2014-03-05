@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Laravel PHP Framework</title>
   <link rel="stylesheet" href="css/style.css"/>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="js/jquery-1.11.0.min.js"></script>
+  <script src="js/angular.js"></script>
   <script src="js/script.js"></script>
 </head>
 <body>

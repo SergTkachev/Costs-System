@@ -2,26 +2,10 @@
 <html ng-app='app' lang="en">
 <title>Costs system</title>
 <link rel="stylesheet" href="css/style.css"/>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/jquery-1.11.0.min.js"></script>
 <script src="js/angular.js"></script>
 <script src="js/script.js"></script>
 <body>
-<!--<div class="container">
-  <ul class="main-controller">
-    <li ng-repeat='cost in costs'>
-      {{ cost.type }} <a href="#" ng-click='deleteUser(item, $index)'>Delete</a>
-    </li>
-  </ul>
-
-  <form>
-    <input type="text" ng-model='user.name'>
-    <input type="text" ng-model='user.email'>
-    <input type="text" ng-model='user.password'>
-    <button ng-click='saveUser(user)'>Save User</button>
-  </form>
-
-</div>-->
-
 <section class="container main-controller">
   <h1 class="page-title">Cost system</h1>
   <div class="section" id="filters">
@@ -45,7 +29,7 @@
           <input placeholder="Items per page…" type="text" name="ipp" id="filter-pager"/>
         </li>
       </ul>
-      <input type="submit" value="Filter" id="submit"/>
+      <input type="submit" value="Filter" />
     </form>
   </div>
   <div class="section" id="costs">
@@ -79,7 +63,7 @@
           <textarea ng-model='cost.description' placeholder="Description…" name="description" id="cost-description"></textarea>
         </li>
       </ul>
-      <input type="submit" value="Add" id="submit" ng-click='addCost(cost)'/>
+      <input type="submit" value="Add" ng-click='addCost(cost)'/>
     </form>
   </div>
 </section>

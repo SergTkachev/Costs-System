@@ -16,4 +16,4 @@ if ($uri !== '/' and file_exists($requested)) {
 	return false;
 }
 
-$test = require_once $paths['public'].'/index.php';
+$test = require_once $paths['public'].'/app.php';

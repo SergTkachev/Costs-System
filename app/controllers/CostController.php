@@ -116,7 +116,7 @@ class CostController extends BaseController {
       ));
       $cost->save();
     }
-    return Redirect::to('/');
+    return Redirect::to('/costs');
 	}
 
   public function addApiCost() {
