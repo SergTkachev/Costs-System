@@ -14,22 +14,22 @@
         <ul>
           <li>
             <label for="filter-type">Type:</label>
-            <input placeholder="Type…" type="text" name="type" id="filter-type"/>
+            <input ng-model="filter.type" placeholder="Type…" type="text" name="type" id="filter-type"/>
           </li>
           <li>
             <label for="filter-date-from">Date from:</label>
-            <input placeholder="Date from…" type="text" name="date1" id="filter-date-from"/>
+            <input ng-model="filter.date1" placeholder="Date from…" type="text" name="date1" id="filter-date-from"/>
           </li>
           <li>
             <label for="filter-date-to">Date to:</label>
-            <input placeholder="Date to…" type="text" name="date2" id="filter-date-to"/>
+            <input ng-model="filter.date2" placeholder="Date to…" type="text" name="date2" id="filter-date-to"/>
           </li>
           <li>
             <label for="filter-pager">Items per page:</label>
-            <input placeholder="Items per page…" type="text" name="ipp" id="filter-pager"/>
+            <input ng-model="filter.ipp" placeholder="Items per page…" type="text" name="ipp" id="filter-pager"/>
           </li>
         </ul>
-        <input type="submit" value="Filter" />
+        <input type="submit" value="Filter" ng-click="goFilter(filter)"/>
       </form>
     </div>
     <div class="section" id="costs">
@@ -39,7 +39,7 @@
         <span class="cost-cell">Date</span>
         <span class="cost-cell">Description</span>
       </div>
-      <div class="cost-item" ng-repeat='cost in costs | startFrom: (page - 1) * pageSize | limitTo:pageSize'>
+      <div class="cost-item" ng-repeat='cost in costs | limitTo:pageSize'>
         <span class="cost-cell">{{ cost.value }}&#8372</span>
         <span class="cost-cell">{{ cost.type }}</span>
         <span class="cost-cell">{{ cost.date }}</span>

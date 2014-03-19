@@ -12,7 +12,7 @@ class CostController extends BaseController {
     /**
      * Filtering costs.
      */
-    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
     if (empty($_GET)) {
       $ipp = MAX_COSTS_PER_PAGE;
       $query = Cost::take($ipp)->orderBy('date', 'DESC')->get();
@@ -48,6 +48,7 @@ class CostController extends BaseController {
     $result['costs'] = $costs;
     $result['pager'] = $this->getPagerCount($ipp);
     $result['pageSize'] = $ipp;
+    $result['page'] = $page;
     return $result;
   }
 
