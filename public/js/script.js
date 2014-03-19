@@ -21,26 +21,35 @@
     }
 
     $scope.goFilter = function (filter) {
-      console.log(filter);
       filter = filter || {};
-      filter.ipp = filter.ipp || 10;
-      console.log($scope);
-      ng.extend($scope, {
-        filter: filter
-      });
-      console.log($scope);
+      ng.extend($scope.filter, filter);
+      $scope.filter.ipp = typeof $scope.filter.items === 'undefined' ? $scope.filter.ipp : $scope.filter.items;
       $http.get('api/costs', { params: $scope.filter }).success(function (data) {
-        ng.extend($scope, {
-          costs: data.costs,
+        ng.extend($scope.filter, {
           page: data.page,
-          numPages: Math.ceil(data.numItems / filter.ipp),
-          ipp: filter.ipp
+          numPages: Math.ceil(data.numItems / $scope.filter.ipp)
+        });
+        ng.extend($scope, {
+          costs: data.costs
         });
       }).error(function (e) {
         console.log(e);
       });
     }
 
+    /**
+     * Init scope.
+     */
+    ng.extend($scope, {
+      filter: {
+        page: 1,
+        ipp: 10
+      }
+    });
+
+    /**
+     * Main and single page:)
+     */
     $scope.goFilter();
   };
 

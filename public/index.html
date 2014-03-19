@@ -26,7 +26,7 @@
           </li>
           <li>
             <label for="filter-pager">Items per page:</label>
-            <input ng-model="filter.ipp" placeholder="Items per page…" type="text" name="ipp" id="filter-pager"/>
+            <input ng-model="filter.items" placeholder="Items per page…" type="text" name="ipp" id="filter-pager"/>
           </li>
         </ul>
         <input type="submit" value="Filter" ng-click="goFilter(filter)"/>
@@ -39,16 +39,16 @@
         <span class="cost-cell">Date</span>
         <span class="cost-cell">Description</span>
       </div>
-      <div class="cost-item" ng-repeat='cost in costs | limitTo: ipp'>
+      <div class="cost-item" ng-repeat='cost in costs | limitTo: filter.ipp'>
         <span class="cost-cell">{{ cost.value }}&#8372</span>
         <span class="cost-cell">{{ cost.type }}</span>
         <span class="cost-cell">{{ cost.date }}</span>
         <span class="cost-cell description">{{ cost.description }}</span>
       </div>
       <div class="pager">
-        <button ng-disabled="page == 1" ng-click="goPage(page - 1)">Previous</button>
-          {{ page }} / {{ numPages }}
-        <button ng-disabled="page >= pager" ng-click="goPage(page + 1)">Next</button>
+        <button ng-disabled="filter.page == 1" ng-click="goPage(filter.page - 1)">Previous</button>
+          {{ filter.page }} / {{ filter.numPages }}
+        <button ng-disabled="filter.page >= filter.numPages" ng-click="goPage(filter.page + 1)">Next</button>
       </div>
     </div>
     <div class="section" id="add-cost">

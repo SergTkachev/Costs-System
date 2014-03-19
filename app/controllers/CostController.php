@@ -22,7 +22,6 @@ class CostController extends BaseController {
       $tid = Type::whereName($type)->get()->toArray()[0]['tid'];
       $query->whereTid($tid);
     }
-    unset($_GET['page']);
     $query = $query->orderBy('date', 'DESC')->get();
 
     /**
