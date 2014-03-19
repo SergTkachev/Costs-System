@@ -21,13 +21,20 @@
     }
 
     $scope.goFilter = function (filter) {
+      console.log(filter);
       filter = filter || {};
-      $http.get('api/costs', { params: filter }).success(function (data) {
+      filter.ipp = filter.ipp || 10;
+      console.log($scope);
+      ng.extend($scope, {
+        filter: filter
+      });
+      console.log($scope);
+      $http.get('api/costs', { params: $scope.filter }).success(function (data) {
         ng.extend($scope, {
           costs: data.costs,
-          pager: data.pager,
           page: data.page,
-          pageSize: data.pageSize
+          numPages: Math.ceil(data.numItems / filter.ipp),
+          ipp: filter.ipp
         });
       }).error(function (e) {
         console.log(e);

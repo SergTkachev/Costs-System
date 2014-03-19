@@ -13,26 +13,17 @@ class CostController extends BaseController {
      * Filtering costs.
      */
     $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-    if (empty($_GET)) {
-      $ipp = MAX_COSTS_PER_PAGE;
-      $query = Cost::take($ipp)->orderBy('date', 'DESC')->get();
+    $type = !empty($_GET['type']) ? lcfirst($_GET['type']) : '';
+    $date1 = !empty($_GET['date1']) ? date('Y-m-d', strtotime($_GET['date1'])) : 0;
+    $date2 = !empty($_GET['date2']) ? date('Y-m-d H:i:s', strtotime($_GET['date2'] . ' +1 day')) : date('Y-m-d H:i:s');
+    $ipp = (int) $_GET['ipp'];
+    $query = Cost::whereBetween('date', array($date1, $date2));
+    if (!empty($type)) {
+      $tid = Type::whereName($type)->get()->toArray()[0]['tid'];
+      $query->whereTid($tid);
     }
-    else {
-      $type = !empty($_GET['type']) ? lcfirst($_GET['type']) : '';
-      $date1 = !empty($_GET['date1']) ? date('Y-m-d', strtotime($_GET['date1'])) : 0;
-      $date2 = !empty($_GET['date2']) ? date('Y-m-d H:i:s', strtotime($_GET['date2'] . ' +1 day')) : date('Y-m-d H:i:s');
-      $ipp = !empty($_GET['ipp']) ? (int) $_GET['ipp'] : MAX_COSTS_PER_PAGE;
-      $query = Cost::whereBetween('date', array($date1, $date2));
-      if (!empty($type)) {
-        $tid = Type::whereName($type)->get()->toArray()[0]['tid'];
-        $query->whereTid($tid);
-      }
-      if (!empty($ipp)) {
-        $query->take($ipp);
-      }
-      unset($_GET['page']);
-      $query = $query->skip(($page - 1) * $ipp)->orderBy('date', 'DESC')->get();
-    }
+    unset($_GET['page']);
+    $query = $query->orderBy('date', 'DESC')->get();
 
     /**
      * Change costs for view.
@@ -45,9 +36,8 @@ class CostController extends BaseController {
           'description' => $item['description'],
         );
       }, $query->toArray());
-    $result['costs'] = $costs;
-    $result['pager'] = $this->getPagerCount($ipp);
-    $result['pageSize'] = $ipp;
+    $result['numItems'] = count($costs);
+    $result['costs'] = array_slice($costs, ($page - 1) * $ipp, $ipp);
     $result['page'] = $page;
     return $result;
   }

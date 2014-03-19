@@ -39,7 +39,7 @@
         <span class="cost-cell">Date</span>
         <span class="cost-cell">Description</span>
       </div>
-      <div class="cost-item" ng-repeat='cost in costs | limitTo:pageSize'>
+      <div class="cost-item" ng-repeat='cost in costs | limitTo: ipp'>
         <span class="cost-cell">{{ cost.value }}&#8372</span>
         <span class="cost-cell">{{ cost.type }}</span>
         <span class="cost-cell">{{ cost.date }}</span>
@@ -47,7 +47,7 @@
       </div>
       <div class="pager">
         <button ng-disabled="page == 1" ng-click="goPage(page - 1)">Previous</button>
-          {{ page }} / {{ pager }}
+          {{ page }} / {{ numPages }}
         <button ng-disabled="page >= pager" ng-click="goPage(page + 1)">Next</button>
       </div>
     </div>
